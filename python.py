@@ -53,7 +53,7 @@ pipenum = 0
 # Run until the user asks to quit
 running = True
 color = 'red'
-characterimage = pygame.image.load('python1/flappybird.png').convert_alpha() 
+characterimage = pygame.image.load('python1/flappybird/flappybird.png').convert_alpha() 
 radiusmultiplier = maxy/250 #bigger num = smaller
 imagesizex = radius*radiusmultiplier
 characterimage = pygame.transform.scale(characterimage, (imagesizex, imagesizex)) #it sucks but the image is not perfect size so it needs to be slight more than radius
@@ -101,7 +101,7 @@ while running:
                 # print('press space')
                 
                 yvelocity = -390 * (screeny/720)
-                mixer.music.load("python1/flappyswoosh.mp3") 
+                mixer.music.load("python1/flappybird/flappyswoosh.mp3") 
                 mixer.music.play() 
                 pass
     ticktime = False
@@ -134,8 +134,9 @@ while running:
                 if newx < 0:
                     pipenum-=1
                     continue
-                pipe = pygame.draw.rect(screen, 'green', pygame.Rect(newx, 0, screenx/15, y))
-                bottompipe = pygame.draw.rect(screen, 'green', pygame.Rect(newx, y+screeny*.24, screenx/15, 3000))
+                pipegreen = (50, 200, 50)
+                pipe = pygame.draw.rect(screen, pipegreen, pygame.Rect(newx, 0, screenx/15, y))
+                bottompipe = pygame.draw.rect(screen, pipegreen, pygame.Rect(newx, y+screeny*.24, screenx/15, 3000))
                 ystandard = screeny/20
                 xgreenstandard = screenx/15
                 darkgreenparttop = pygame.draw.rect(screen, 'dark green', pygame.Rect(newx, pipe.y+pipe.height-ystandard, xgreenstandard, ystandard))
@@ -219,9 +220,9 @@ while running:
                 # print("s")
 
     if gameover:
-        mixer.music.load("python1/metalhit.mp3") 
+        mixer.music.load("python1/flappybird/metalhit.mp3") 
         mixer.music.play() 
-        # time.sleep(.2)
+        time.sleep(.5)
         pipesy.pop(0)
         pipes.pop(0)
         pipenum-=1
